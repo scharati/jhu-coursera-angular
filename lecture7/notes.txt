@@ -1,0 +1,3 @@
+The mechanism of binding via "ng-*" attributes
+
+The Angular JS engine gets handle of the required elements from the view by querying based on the appropriate "ng-*" attributes and sets up the wiring

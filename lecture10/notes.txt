@@ -1,0 +1,17 @@
+Minification :
+The process of code compression while preserving the original functionality
+
+The way to specifying parameters to inject into a function so that minification works correctly:
+
+.controller("<controllerName>",[<parameters to inject and function name as the last parameter>])
+
+.controller("myController",[$scope,$filter,myControllerFunc])
+
+myControllerFunc is the function which does the actual work. This should be the last parameter. The parameters to inject will be preceding this.
+
+
+.controller("<controllerName>",<ctrlFunction>)
+ctrlFunction.$inject = ['<para1>','<para2>']
+
+.controller("myController",myControllerFunc)
+myControllerFunc.$inject = ['$scope','$filter'];

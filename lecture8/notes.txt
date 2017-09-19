@@ -1,0 +1,15 @@
+Dependency Injection is a software design pattern where the dependencies of a software construct are specified from the caller rather than the software construct knowing the dependencies. Hence it's called inversion of control.(The dependencies of the construct are now moved outside of the software construct)
+
+
+BillingService(){
+	creditCardProcessor = new CreditCardProcessor();
+}
+
+Here the BillingService has a dependency on CreditCardProcessor which is hidden inside. Also one cannot change the CreditCardProcessor without changing the BillingService.
+
+BillingService(creditCardProcessor){
+
+	m_creditCardProcessor =  creditCardProcessor;
+}
+
+Now this is employing Dependency Injection. The dependencies of BillingService are injected to it (creditCardProcessor).

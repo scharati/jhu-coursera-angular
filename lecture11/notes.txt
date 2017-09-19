@@ -1,0 +1,23 @@
+Expression and interpolation:
+
+Expression is something which evaluates to some value.
+Interpolation is the process of evaluating the expression and a value as result is produced.
+
+Some key aspects of the expression:
+	expression is restricted to evaluating the properties sourced from the $scope service
+	i.e the properties are those available on the $scope service.
+	If there is any TypeError or Reference error then there is no error shown instead
+	no value is displayed
+	The expression is bound to the scope and any changes to the variable on $scope affects
+	the expression. => results in triggering of expression evaluation
+
+
+In Angular JS expressions are specified by the following notation:
+
+{{ expression }}
+
+expression can be normal variable or function variable.
+
+expression = name ($scope.name)
+expression = sayHello() ($scope.sayHello) 
+

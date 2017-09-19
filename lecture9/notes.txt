@@ -1,0 +1,6 @@
+Dependency Injection how it works:
+
+In Angular the different services are injected by the $injector service. This $injector service can parse the function parameters and can determine which parameters to inject.
+
+
+$injector.annotate(myFunc);// gets the parameters for the function "myFunc".

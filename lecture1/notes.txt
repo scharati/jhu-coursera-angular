@@ -1,0 +1,20 @@
+Desired characteristics of code base:
+
+1. find easily the relevant code in the code base -> modularity
+2. updating one part of code should not affect other parts - modularity,isolation
+3. code reusability
+4. testability 
+
+
+Some problems like coding style, missing comments etc can be solved by formatting.
+
+The most important issue that leads to code complexity is low cohesion and high coupling.
+
+Cohesion - is the conceptual integrity of the code unit i.e. the code should demostrate a singlre responsibility
+
+The desired property is high cohesion -> the code unit should have related functionalities which come from the the same single responsibility
+
+
+Dependency: The wiring between different units to function. 
+
+The desirable property is to have low dependency so that any change would not result in ripple effect i.e. the change will not require many components to change

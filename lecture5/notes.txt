@@ -1,0 +1,13 @@
+The Angular JS framework is built on the MVVM pattern
+
+Model - is the raw data behind the view [ recieved from the server probably]
+View - Presentation of the data
+ViewModel - The model / state of the view
+
+$scope is the service / mechanism for sharing data between view and model
+
+example:
+
+<input type="text" ng-model="name">
+
+=> the value in input element is bound to the "name" property on $scope service
