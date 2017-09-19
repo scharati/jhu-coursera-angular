@@ -1,0 +1,28 @@
+Filters:
+
+Filter is a service which helps to manipulate the output expression value.
+
+Typical examples are :
+
+1. Converting an output string to uppercase
+2. Converting an output string to currency 
+
+
+Syntax :
+
+javascript:
+
+$filter('<specific_filter>')(<argument1,argument2,argument3>)
+
+$filter('<specific_filter>') return the filter function which can apply the required processing.
+
+HTML:
+
+{{ <argument | filter:arg1:arg2>}}
+
+
+Example:
+
+$filter('currency')(amount,symbol,farctionSize)
+
+{{amount | currency :symbol : fractionSize}}
