@@ -1,1 +1,16 @@
-ng-repeat
+ng-repeat:
+It's a construct to loop over data and render in HTML.
+
+syntax:
+ng-repeat = "item in collection" 
+
+example
+<ul>
+	<li ng-repeat="item in myList">
+	{{item}}
+	</li>
+</ul>
+
+Loop over items in myList and output each value 
+
+With ng-repeat there is a special value $index which can be used to access the current item index in the collection being traversed.

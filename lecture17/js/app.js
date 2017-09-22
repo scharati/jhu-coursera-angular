@@ -1,27 +1,45 @@
 (function(){
-	angular.module("BindingApp", [])
-	.controller("BindingController",bindingController);
-	 bindingController.$inject = ['$scope'];
+	'use strict';
 
-	 function bindingController($scope){
-	 	console.log("+++ in binding controller +++");
-	 	$scope.firstName = "first_name";
-	 	$scope.showNumberOfWatchers = function(){
-	 		console.log("Number of watchers: " +$scope.$$watchersCount);
-	 	};
+	var shoppingList1 = ["badanekayi","chavalikayi","savatekayi","bendekayi","yelekosu","hookosu"];
 
-	 	$scope.setFullName = function(){
-	 		$scope.fullName = $scope.firstName + " " + "last_Name";
-	 	};
+	var shoppingList2 = [
+	{
+		"name":"MysorePak",
+		"quantity": 10	
+	},
+	{
+		"name": "Pedha",
+		"quantity": 50
+	},
+	{
+		"name": "Chiroti",
+		"quantity": 100
+	},
+	{
+		"name": "Burfi",
+		"quantity" : 400
+	}
+	]
 
-	 	$scope.logFirstName = function(){
-	 		console.log("FistName is : " + $scope.firstName);
-	 	};
+	angular.module('ShoppingListApp',[])
+	.controller("ShoppingListController", shoppingListController);
 
-	 	$scope.logFullName = function(){
-	 		console.log(" Full Name is : " + $scope.fullName);
-	 	};
+	shoppingListController.$inject = ['$scope'];
+	function shoppingListController($scope){
+		$scope.shoppingList1 = shoppingList1;
+		$scope.shoppingList2 = shoppingList2;
+		$scope.itemName = "";
+		$scope.itemQuantity = 0;
 
-	 };
+		$scope.addItem = function (){
+			var newItem = {
+				"name": $scope.itemName,
+				"quantity": $scope.itemQuantity
+			};
+			shoppingList2.push(newItem);
+		};
+	};
+
 
 })();
