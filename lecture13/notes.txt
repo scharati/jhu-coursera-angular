@@ -1,0 +1,41 @@
+Custom Filter:
+
+Steps to create a custom filter:
+
+1. create a filter factory function
+
+function myFilterFactory(){
+	return function(input){
+		var msg = processed_input
+		return msg;
+	}
+}
+
+2. register the filter with the module
+
+.filter('filterRegisterName',filterFactory)
+
+example:
+.filter('myFilter',myFilterFactory)
+
+
+3. use the custom filter in javascript 
+	3A: inject the custom filter into the controller
+	$scope.inject = ['filterRegisterNameFilter',.....]
+	example:
+
+	$scope.inject = ['myFilterFilter']
+
+	3B.call the filter
+	filterRegisterNameFilter(arguments);
+	example:
+	myFilterFilter(input)
+
+4. use the custom filter in HTML
+	4A. no need to inject the custom filter into the controller
+
+	4B. use the filter
+		{{ input | filterRegisterName }}
+
+	example:
+		{{ input | myFilter}}

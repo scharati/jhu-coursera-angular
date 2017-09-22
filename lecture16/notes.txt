@@ -1,0 +1,23 @@
+Databinding : 1-way, 2-way and one time binding
+
+1. 2-way data binding
+2-Way data binding is when we have wiring setup between DOM element and property on $scope. Any update to $scope.<propertyName> triggers updated to the bound DOM element
+
+<input type"text" ng-model="name">
+
+Maps the "input" element to the $scope.name property
+
+2. 1-Way data binding
+As the name implies the data flow is uni-directional
+Expression and interpolation are examples of 1-way data binding
+
+{{name}}
+
+Changes to the $scope.name property are updated at the location of the expression
+
+3.One time data binding
+
+This a one time binding between the DOM element and property on $scope object. 
+
+{{::fullname}}  implies that there is a binding with $scope.fullname property and it's only updated once
+

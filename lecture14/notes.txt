@@ -1,0 +1,25 @@
+Digest cycle:
+
+This is the Angular's mechanism for data binding.In Vanilla Javascript one can set up event handlers to observe changes to HTML content.Change to one property in most cases will change other properties. The HTML content corresponding to those properties has to be changed in response. A framework is needed to accomplish this.
+
+Angular has a mechanism of Watchers(set up on the Angular Context -> $scope) who watch changes to properties on the Angular Context -> $scope. Then there is the Digest Cycle which loops over watchers to check once if something changed and then once to check nothing has changed. So it needs two cycles in most cases.
+
+
+How to add Watchers:
+
+1. Manual way of adding :
+
+$scope.watch("<property_on_the_scope_to_watch>", function_to_execute_onchange(oldValue,newValue){
+	
+});
+
+This will result in a Watcher to look for changes to <property_on_the_scope_to_watch>. If there's a change to the <property_on_the_scope_to_watch> then the "function_to_execute_onchange(oldValue,newValue)" is triggered which does it's work.
+
+2. {{ the_property_name_on_scope}}
+	Angular automatically adds watchers on "the_property_name_on_scope"
+
+3. By specifying "ng-model" 
+<input type="text" ng-model="name">
+
+This binds the input element to the "name" property on $scope. This is a two-way binding
+

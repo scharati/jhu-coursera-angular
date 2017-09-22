@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="BindingApp">
+<head>
+	<title> Data binding : 2-way,1-way and 1-time binding</title>
+	<script src="js/angular.js"></script>
+	<script src="js/app.js"></script>
+</head>
+<body>
+	<h1>Data binding : 2-way,1-way and 1-time binding</h1>
+	<div ng-controller="BindingController">
+		<div>
+			<button ng-click="showNumberOfWatchers()">
+				Log # of Watchers
+			</button>
+		</div>
+		<br>
+		<div>
+			<button ng-click="setFullName()">
+				Set Full Name
+			</button>
+		</div>
+		<br>
+		Full Name is : {{:: fullName}} 
+		<br><br>
+		<div>
+			<button ng-click="logFirstName()">
+				Log First Name
+			</button>
+		</div>
+		<br>
+		<div>
+			<button ng-click="logFullName()">
+				Log Full Name
+			</button>
+		</div>
+		<br> <br>
+		<div>
+			<input type="text" ng-model="firstName">
+		</div>
+	</div>
+</body>
+</html>

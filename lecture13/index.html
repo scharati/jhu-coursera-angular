@@ -14,8 +14,12 @@
 		{{name}}
 		<br>
 		{{sayMessage()}}
-		Cost:
-		{{cookieCost | currency : '#blah' : 4}}
+		<br>
+		{{sayDeshaMessage()}}
+		<br>
+		Truth Message:
+		<br>
+		{{sayMessage() | truth : 'VARSHA' : 'DESHA' | lowercase}}
 	</div>
 </body>
 </html>

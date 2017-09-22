@@ -1,0 +1,10 @@
+$digest and $apply:
+
+The Angular JS framework has the mechanism of Watchers and Digest cycle to realize data-binding. Watchers watch for changes to properties on the $scope object (Angular Context) and trigger the Digest cycle. The Digest cycle inturn loops over all the watchers and then checks if there are changes and then again checks to ensure there are no changes.
+
+There are some cases where there is some code which AngularJS is unaware of and we need the properties / DOM to be updated. In those cases the Digest cycle has to be manually triggered. This is done by either $digest or $apply
+
+
+$digest function does not make available the errors and exceptions thus is not preferred.
+$apply is a better alternative
+The best way is to use an appropriate Angular JS service
