@@ -1,0 +1,24 @@
+Prototypal Inheritance:
+
+Inheritance is a mechanism where children "inherit"/(get it free) properties and methods of the parent by virtue of their inheritance.
+There are different types of inheritance: class based, prototype based
+
+Javascript uses Prototype based inheritance. You create an object and then use it as prototype of other objects. Then there is a link between the Prototyped and Prototype object. This link is used for all resolutions.
+
+// the parent object
+var parent = {
+	name = "parent"
+	parentFunc : function(){
+
+	};
+}
+
+// the child object -using parent as the prototype
+var child = Object.create(parent);
+
+child {} i.e. empty object and properties and methods are looked up in the prototype chain for resolution.
+
+child.name resolves to parent.name
+child.parentFunc resolves to parent.parentFunc
+
+
