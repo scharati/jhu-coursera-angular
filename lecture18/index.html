@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="ShoppingListApp">
+<head>
+	<meta charset="utf-8">
+	<script src="js/angular.js"></script>
+	<script src="js/app.js"></script>
+	<title>ng-repeat</title>
+	<style> body {font-size: 2.5em;}</style>
+</head>
+<body>
+	<h1> Shopping List</h1>
+	<div ng-controller="ShoppingListController">
+		<h3> Shopping List:</h3>
+		<!-- example 1-->
+		Search String:
+		<input type="text" ng-model="search">
+		<ul>
+			<li ng-repeat="item in shoppingList1 | filter : search">
+				{{ item }}
+			</li>
+		</ul>
+	</div>
+
+</body>
+</html>

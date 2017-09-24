@@ -1,0 +1,11 @@
+filter on ng-repeat:
+
+Array has a function called filter which accepts a callback function which should return true / false for each element to be included in the new array. A new Array will be returned with the subset of values gleaned from the original array by applying the callback function to the filter function.
+
+Angular has a special filter called 'filter'
+In the simplest format it accepts a string as argument which filters the collection of values based on the finding of "string" in the collection and returns the subset of values.
+
+
+example: ng-repeat= "item in collection | filter : searchString"
+
+A list of "item" in collection will be returned where the "searchString" appears in the "item" name.
