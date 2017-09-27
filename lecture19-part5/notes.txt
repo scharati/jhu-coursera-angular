@@ -1,0 +1,14 @@
+Controller As Syntax:
+
+This is a syntax offered by Angular JS :
+
+ng-controller = "<myController> as <label> "
+
+myController - controller name
+label - label name
+
+This syntax makes available the instance of "myController" on the $scope as property "label".
+
+$scope.label = myController.
+
+
