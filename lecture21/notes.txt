@@ -1,0 +1,65 @@
+Custom Services with Factory method:
+
+
+The factory method is a mechanism to return object/service.
+
+service vs factory method:
+
+The service method is a specialization of the factory method i.e. the factory can be used to produce the same end result as that of the service method.
+
+The factory method provides options to create objects/functions(services): It is not restricted to producing singletons.
+
+Service method: Produces singleton and there are no easy options for configurability
+
+
+Syntax:
+
+Registering a service factory:
+
+.factory(<serviceName>,<factory_function_for_producing_service>)
+<serviceName> is the name to inject 
+
+approach 1:
+function factory_function_for_producing_service(){
+	var factory = function(){
+		return new SomeService();
+	}
+
+	return factory;
+}
+
+HOW TO CALL:
+
+var someSvc = factory_function_for_producing_service();
+someSvc();
+
+approach 2:
+function factory_function_for_producing_service(){
+	var factory = {
+		getSomeService : function(){
+			return new SomeService();
+		};
+	};
+
+	return factory;
+}
+
+HOW TO CALL:
+
+var someSvc = factory_function_for_producing_service();
+someSvc.getSomeService();
+
+Example:
+
+angular.module('myApp',[])
+.controller('myAppController', MyAppController)
+.factory('myService',MyServiceFactory);
+
+
+
+NOTE:
+.service('myService',MyService);
+myService is the service with constructor MyService
+
+.factory('myService',MyServiceFactory);
+myService is the service produced by the MyServiceFactory when executed

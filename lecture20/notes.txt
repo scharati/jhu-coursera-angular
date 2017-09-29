@@ -1,0 +1,11 @@
+Services:
+
+Registering services:
+angular.module("myApp")
+.controller("myController", ctrl1)
+.service("myService",myService1);
+
+myService is the registration name for the service.
+myService1 is the constructor for the service
+
+

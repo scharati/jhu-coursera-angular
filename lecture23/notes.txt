@@ -1,0 +1,16 @@
+ng-if, ng-show and ng-hide
+
+ng-if is a directive that is used to render a element based on the evaluation of some expression
+
+syntax :
+<htmlElement ng-if="expression">
+if the expression is true then ONLY the htmlElement is added to the DOM
+
+ng-show and ng-hide are directives that are used to render a element based on the evaluation of some expression
+The difference with ng-if is that they are in the DOM but their visibility is controlled by Angular using some CSS classes
+
+syntax :
+<htmlElement ng-show="expression">
+if the expression is true then ONLY the htmlElement is shown in DOM
+<htmlElement ng-hide="expression">
+if the expression is true then ONLY the htmlElement is NOT shown in DOM

@@ -1,0 +1,104 @@
+Service Provider:
+
+Service Provider is a recipe or pattern for providing custom service. This recipe/pattern provides the most verbose/extensible method for creating custom services.
+This method provides a means to configure the service at the time of bootstrapping.
+
+The mechanism can be summed up as below:
+
+1. Register the service provider -> Service Provider is a function that returns the custom service with some configurations
+	.provider("<customServiceName>", serviceProvider);
+
+	<customServiceName> is the custom service to be injected and used
+	serviceProvider is the javascript function that returns the customService with required configuration
+
+	example:
+	.provider("ShoppingListService", ShoppingListServiceProvider);
+	ShoppingListService - > The desired service
+	ShoppingListServiceProvider - > The desired service provider
+
+2.  Usage of the service
+    inject <customServiceName>
+    call the required methods on <customServiceName>
+
+    myController(customServiceName){
+    	customServiceName.myMethod();
+    }
+
+    example:
+
+    ShoppingListController(ShoppingListService){
+
+    	ShoppingListService.addItem(itemName, itemQuantity);
+    }
+
+
+3. The recipe or the provider implemenation: It has to implement the "$get" method which should return the
+	custom service with all the configurations
+
+	function serviceProvider(){
+		// custom configurations
+		config{};
+
+		var service = new customServiceName(config);
+		return service;
+	}
+
+	Example:
+
+	function ShoppingListServiceProvider(){
+		var provider = this;
+		provider.defaults = {
+			maxItems : 10
+		}
+
+		provider.$get:	function(){
+			var service = new ShoppingListService(provider.defaults.maxItems);
+			return service;
+		}
+	}
+
+OPTIONAL:
+4.Providing custom configurations:
+
+A. Registering the configuration function
+.config(<config_function>)
+
+config_function -> The function to provide the custom configurations
+
+example:
+.config(Config);
+
+B. Implementing the Custom Configuration Provider if we can say so !!
+
+function config_function(<customServiceName>Provider){
+
+	<customServiceName>Provider.customConfigProperty = <customConfifPropertyValue>;
+	
+}
+
+Example:
+
+Config.$inject = ['ShoppingListServiceProvider'];
+Config(ShoppingListServiceProvider){
+	ShoppingListServiceProvider.defaults.maxItems = 2;
+}
+
+
+Service Vs Factory Vs Provider
+
+All these are mechanisms for custom service implementation
+
+Service -> directly gives a singleton service with no means to customize
+should be called directly Service().whatEverMethod();
+
+Factory-> provides a custom place holder which returns the Service with the desired customizations
+should be called registeredFactoryName() /registeredFactoryName.<method_for_get_service>
+not restricted to Singleton
+
+Provider- much more formal way of getting the service instance with desired customizations
+Should be called as customServiceName.whatEverMethod();
+Configurations can be set during bootStrapping by injecting customService+Provider = customServiceProvider
+and setting the configurations on that provider instance;
+
+
+
