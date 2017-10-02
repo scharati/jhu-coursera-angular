@@ -1,0 +1,75 @@
+Asynchronous Behaviour with Promises and $q service:
+
+Synchronous behaviour  -> statements are executed one by one i.e one statement has to complete before another is taken up.
+Asynchronous behaviour -> here statements can be executed in parallel i.e some long running ones can be run separately and are not blocking the UI
+
+Javascript RUNTIME is single threaded one [NOTE only the ENGINE NOT the BROWSER] .The browser provided webmethods which are run in different threads
+
+Asynchronous behavior is important to provide a good user experience. One cannot be blocking the UI for long periods of time this will drive the user from the application.
+
+ASYNC behavior is implemented in JavaScript via callbacks and event listeners. The problem with callbacks is that it's difficult returns success or error results to the caller.Code readability suffers with this approach. Also chaining callbacks is a maintenance nightmare.
+
+Additionally there can be situations where the event might have happened before attaching the listener.
+
+Promises (introduced also in JS runtime) is a mechanism to solve all these shortcomings. In Angular $q service provides Promises.
+
+Promise is an Object that can be passed around and holds references to the result of the Asynchronous behavior.
+
+function asyncFunction(){
+	var deferrred = $q.defer(); --> holds reference to the async behaviour outcome -> promise object + other hooks
+
+------------------------------------- Looks synchronous but it's in reality will be implemented asynchronous
+	if(){// success
+
+		deferred.resolve(result); --> call on success, wraps success data with Promise
+	}
+	else{
+	 	deferrred.reject(result); --> call on failure,wraps failure data with Promise like errorMessage
+	}
+----------------------------------------
+	return deferred.promise;	
+
+}
+
+
+function asyncFunction1(){
+	var deferrred = $q.defer();
+
+	setTimeOut(function (){
+		if(){// success
+
+			deferred.resolve(result);
+		}
+		else{
+		 	deferrred.reject(result);
+		}
+	},3000);
+
+
+
+	return deferred.promise;	
+
+}
+
+
+How to use at calling place:
+
+var promise = asyncFunction();
+
+promise.then( function(result){
+	// handle success case
+}, function(error){
+	//handle failure
+});
+
+
+// Multiple promises can be handled together:
+
+$q.all([promise1,promise2])
+.then(function(result){
+	
+})
+.catch(function(error){
+	
+})
+}

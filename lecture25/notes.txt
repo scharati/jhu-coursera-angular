@@ -1,0 +1,16 @@
+AJAX with $http service:
+
+Provides a means to call server from the frontend. It is based on the $q service and returns a promise
+
+$http is itself a function.
+
+$http({
+	method: "GET",
+	url: "http://someurl",
+	params: {param1: value}
+}).then();
+
+method : The HTTP method to use for requesting the URL
+url: The url to request
+params : parameters the request url, get encoded in case of space
+
