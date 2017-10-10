@@ -1,0 +1,9 @@
+	<h3> {{ title }} </h3>
+	<ol>
+		<li ng-repeat="item in items">
+			{{item.quantity}} of {{item.name}}
+			<button ng-click="items.removeItem($index);">
+				Remove Item
+			</button>
+		</li>			
+	</ol>

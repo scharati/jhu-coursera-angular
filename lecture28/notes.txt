@@ -1,0 +1,43 @@
+Directives : isolate scope bindings
+
+Directives unless specified inherit the scope from the parent controller.  
+
+isolate scope breaks the prototypal inheritance with the parent scope
+scope bindings are used to pass values into directives
+
+function myDirective{
+	var ddo = {
+		scope = {} -> isolates the directive's scope from the parent controller
+	}
+
+	return ddo;
+}
+
+
+Passing values to direcite
+
+1. myProp : "=attributeName"
+
+This syntax has the following effect:
+
+myProp is the property on the directive and "attributeName" is the property on the directive's HTML element
+"attributeName" is evaluated in the parent scope context
+
+"=" is a bi-directional binding
+
+2. myProp: "="
+
+AngularJS will assume that the property on the directive's element is same as the property name on the scope
+
+3. myProp: "=?" implies the attribute is optional
+
+4. myProp:"@attributeName"
+myProp is the property on the directive and "attributeName" is the property on the directive's HTML element
+"attributeName" is evaluated in the parent scope context
+
+This is one way binding and we can use primitives and interpolations. If the type is object type then there would error
+
+<my-directive attribute-name = {{ value}}> 
+</my-directive>
+
+value is accessible as myProp.

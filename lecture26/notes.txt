@@ -1,0 +1,40 @@
+Directives : 
+This is a feature / functionality of Angular JS to create custom HTML elements. The creation of custom HTML elements is important since this gives semantics to the HTML document which inturn makes for better readability of the HTML document.
+
+The process of performing the source document to the desired target document is called compilation. In Angular JS this happens one-time.
+
+Technical definition : It is a marker on a DOM element to tell Angular to attach some  specified behavior to that DOM element.
+
+The marker can be an element name,attribute,css class or comment. It's generally not a good practice to use comment/ css class so this is mostly confined to element name and attribute.
+
+
+
+Steps:
+
+1. Register the directive:
+
+.directive('myTag',MyTag);
+'myTag' - The normalized name that will appear in HTML
+MyTag - The factory function that returns the DDO - Directive  Defintion Object [defines the behavior of the tag to Angular
+
+
+2. Define the Factory Function
+
+MyTag.$inject = [...];
+
+function MyTag(){
+	var ddo{
+		template: 'Hello World!'
+	};
+
+	return ddo;
+}
+
+
+3. Use in HTML
+
+'myTag' -> <my-tag> </my-tag>
+
+
+
+NOTE: The scope of the directive will be the scope of the containing controller unless specified otherwise.

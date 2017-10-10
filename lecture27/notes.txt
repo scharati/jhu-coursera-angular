@@ -1,0 +1,14 @@
+The Restrict property of Directive specifies where the directive is to be detected : as element or attribute
+
+function MyDirective(){
+	var ddo = {
+		restrict : "AE",
+
+	};
+	return ddo;
+}
+
+If the restrict property is not specified then Angular will default it to "AE".
+A- attribute, E-element =>  Angular tries to detect the directive either as an Attribute or Element
+
+If there is a mismatch between the definition and usage then Angular will ignore it.

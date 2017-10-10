@@ -1,0 +1,15 @@
+Controllers inside directives:
+
+Directives have to serve as self sufficient units that means they have to have their own controllers
+
+function myDirective{
+	var ddo = {
+		templateUrl : "...",
+		scope = {}
+		controller: <ControllerFunction>, --> specifies the controller for the directive
+		bindToController : true, -> implies that the properties on the scope are stored on the controller - >alias.property instead on the $scope object
+		controllerAs: 'alias', -> the controller instance will be available on the scope as $scope.alias = controller
+	}
+}
+
+scope bindings inside directive better use "<" for non-primitive types so that unnecessary watchers are not added inside the directives
