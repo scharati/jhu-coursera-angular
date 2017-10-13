@@ -13,3 +13,4 @@ function myDirective{
 }
 
 scope bindings inside directive better use "<" for non-primitive types so that unnecessary watchers are not added inside the directives
+

@@ -1,0 +1,29 @@
+Directive Link Function:
+Mechanism to manipulate the DOM directly.
+
+function MyDirectiveFunction(){
+    var ddo = {
+        scope{
+
+        },
+        controller:MyDirectiveController,
+        bindToController: true,
+        controllerAs: 'list',
+        link: MyDirectiveLink ---> specifies the function which does the work of DOM manipulation
+    }
+}
+
+function MyDirectiveLink(scope,element,attrs,controller){
+
+}
+
+
+NOTE: injection cannot be done to the link function. So the parameters are passed
+
+scope: the scope available to the directive controller [NOT injected]
+element: The top level element of the directive [ if the directive is an attribute then the element is the element on which this directive is defined as an attribue] -> This is a minimal JQuery object called JQLite
+If 'jquery' library is included in the page before 'angular' then this would be the full-fledged JQuery object
+attrs: references to the attributes defined on the 'element'
+controller: if there is a controller declared for the directive then this is that controller
+
+

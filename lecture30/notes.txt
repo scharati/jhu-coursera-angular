@@ -1,0 +1,54 @@
+Directives: Usage of '&' binding
+
+The isolate scope binding '&' gives a reference to the function of interest with the context where it is defined.
+
+The result of this will be execution of the function referenced in the isolate scope via the property with '&' binding in it's defining context with all the variables evaluated in that context.
+
+syntax :
+
+var ddo ={
+    scope:{
+        refFunction: '&'
+    }
+}
+
+sets up a reference to the function passed via the refFunction property in html i.e. dummyFunc from mainCtrl
+
+
+main page content:
+
+<my-directive refFunction="mainCtrl.dummyFunc(myKey)"> </my-directive>
+
+myKey is a key so that values to the function referenced can be passed in a map with myKey as the key.
+
+my directive content
+
+<button ng-click="directiveCtrl.refFunction({myKey:myVal})"> </button>
+
+call to the referenced function(dummyFunc) via the local property on the isolate scope. A map using the key specified in the main page is passed to the function.
+
+
+NOTE: When a function value is retrived and called outside it's defining context then the function is executed in the called context.
+
+Example:
+
+function Person(){
+    this.fullName = "myPersonName";
+    this.fav = "chakkali";
+
+    this.describe = function(){
+        console.log(this);
+        console.log(this.fullName + " likes " + this.fav);
+    };
+}
+
+var myPerson = new Person();
+myPerson.describe(); -> call on the defined context
+
+var describe = myPerson.describe; -> reference to the function outside the defining context
+
+describe(); -> call outside context -> in the global window context
+
+// method to execute a referenced function in the supplied context object
+//describe is called in the context of "myPerson"object
+describe.call(myPerson);
