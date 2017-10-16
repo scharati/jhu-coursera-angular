@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="ShoppingListDirectiveApp">
+<head>
+	<meta charset="utf-8">
+	<title> Directives with controller </title>
+    <script src="js/jquery-3.1.0.min.js"></script>
+	<script src="js/angular.js"></script>
+	<script src="js/app.js"></script>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<h1> Directives with controller </h1>
+	<!-- List #1 unlimited items -->
+	<div id="list1" ng-controller="ShoppingListController1 as list1">
+		<input type="text" ng-model="list1.itemName" placeholder="item name">
+		<input type="text" ng-model="list1.itemQuantity" placeholder="quantity">
+		<button ng-click="list1.addItem();"> Add Item </button>
+        <span> {{ list1.lastRemoved}}</span>
+		<shopping-list
+            id="list1"
+            items="list1.items"
+            title="{{list1.title}}"
+            bad-remove="list1.removeItem"
+            on-remove="list1.removeItem(index)">
+            <span class="warning"> WARNING! WARNING! {{list.warning}}</span>
+        </shopping-list>
+
+        <shopping-list
+            id="list2"
+            items="list1.items"
+            title="{{list1.title}}"
+            bad-remove="list1.removeItem"
+            on-remove="list1.removeItem(index)">
+            <div>
+                <div class="title"> COOKIES!!!!!!!!! </div>
+                <div>{{list.warning}}</div>
+            </div>
+        </shopping-list>
+
+	</div>
+</body>
+</html>

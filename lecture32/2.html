@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<meta charset="utf-8">
+	<title> & usage</title>
+	<script src="js/angular.js"></script>
+	<script src="2.js"></script>
+</head>
+<body>
+	<h1> Usage of &</h1>
+	<div ng-controller="myController as ctrl">
+		<input type="text" ng-model="ctrl.myWord" placeholder="enter the word">
+		<input type="text" ng-model="ctrl.myOppWord" placeholder="enter the opposite word">
+		<button ng-click="ctrl.addItem()"> Add Item </button>
+<!--     <div ng-repeat="item in ctrl.getItems()">
+        {{item.word}} {{item.oppWord}}
+    </div> -->
+        <my-directive> </my-directive>
+	</div>
+</body>
+</html>

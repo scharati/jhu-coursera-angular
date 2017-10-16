@@ -1,0 +1,47 @@
+Directive : Transclude
+
+A mechanism to pass template content from parent template to directive. The content which is passed to the directive is evaluated in the parent context.
+
+var ddo ={
+
+    scope:{
+     transclude: true -> marking on the directive that we want transclusion
+    }
+}
+
+main_template:
+
+<html>
+
+<my-directive id="1">
+    My content1111
+</my-directive>
+
+
+<my-directive id="2">
+    My content2222
+</my-directive>
+
+<html>
+
+
+directive_template:
+<div> DIRECTIVE </div>
+<div class="myDirectiveClass" ng-transclude> </div>
+
+
+Result:
+
+<html>
+
+<div> DIRECTIVE </div>
+<div> My content1111 </div>
+
+<div> DIRECTIVE </div>
+<div> My content2222 </div>
+
+
+<html>
+
+
+The content from the usage of my-directive is evaluated and taken from the parent template and inserted at the place where "ng-transclude" is specified in the my-directive template definition

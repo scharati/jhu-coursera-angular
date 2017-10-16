@@ -1,0 +1,9 @@
+<ul ng-repeat="item in dCtrl.items">
+    <li>
+        {{item.short_name}} :: {{item.name}} ::{{item.description}}
+        <button ng-click="dCtrl.onRemove({removeIdx:$index});"> Don't want this one!
+    </li>
+</ul>
+<div class="error" ng-if="dCtrl.items.length <= 0">
+    Nothing found!!
+</div>
