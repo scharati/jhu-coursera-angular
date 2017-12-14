@@ -1,0 +1,68 @@
+Components and Components Based Architecture
+
+Components are a specialization or specific way of implementing Directives.
+
+principles of components based architecture:
+
+1. Components ONLY control their own data
+    -never modify data or DOM outside of their own scope
+    -Modifying creates side-effects that lead to chaos
+    -Angular components always use isolate scope
+
+2. Components have well defined public API - inputs and outputs (these are safeguards to ensure that the NO data is modified which does not belong to THE component )
+    - Inputs use '<' and '@' bindings ONLY
+    - Never change property of passed in object or array
+    - Outputs use '&' for component event callbacks
+    - Pass data to callback through param map {key:val}
+
+3. Components have well-defined lifecycle: [hooks to tap into ]
+    - $onInit - controller initialization code
+    - $onChanges(changeObj) - called whenver one-way binding are updated
+        -> changeObj.currentValue, changeObj.previousValue
+    - $postLink  - similar to 'link' in directive -> to manipulate the DOM
+    - $onDestroy - when scope is about to be destroyed
+
+
+Application should be built as a Tree of components:
+    -> ONLY components should make up an application
+    -> each one would have well defined inputs and outputs
+    -> 2-way data binding is minimized as much as possible
+
+HOW TO Create a COMPONENT:
+
+step 1: Register component with module
+
+angular.module('App',[])
+.component('myComponent',{
+   templateUrl : 'template.html' ,
+   controller: CompController,
+   bindings:{
+    prop1 : '<',
+    prop2: '@',
+    onAction: '&'
+   }
+});
+
+step2 : configure component
+configuration object contains:
+templateUrl
+controller [optional if already some logic is defined] , Angular already provides $ctrl by default.
+[Isolate scope is ALWAYS true for components]
+
+bindings is the object to specify parameter mapping definition
+
+step3: how to use in template
+
+<div ng-click="$ctrl.onAction({myArg:'val'})">
+    {{$ctrl.prop1.prop}} and {{$ctrl.prop2}}
+</div>
+
+step4: Use component in HTML
+
+<my-component
+    prop1 = "val-1"
+    prop2="@parentProp"
+    onAction="parentFunction(myArg)"
+>
+    {{$ctrl.prop1.prop}} and {{$ctrl.prop2}}
+</my-component>

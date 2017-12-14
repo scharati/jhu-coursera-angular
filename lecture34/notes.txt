@@ -1,0 +1,34 @@
+AngularJS event system:
+
+Angular JS event system implements the publish-subscribe pattern.
+Publishers send messages to Subscribers on a common channel
+
+In Angular the common channel is : scope
+Messages are events that can hold data
+
+Publishing an Event :
+1. $scope.$emit
+$emit goes UP the chain
+
+2. $scope.$broadcast:
+$broadcast goes DOWN the chain
+
+Subscribing to an event:
+$scope.on(<eventName>, <eventHandler>)
+
+If the target is not in the scope chain then $rootscope.$broadcast can be used
+$rootscope as the name implies refers to the ROOT scope of the application
+
+STEPS:
+
+1.Broadcase or Emit an Event:
+$scope.$emit('namespace:eventName',{prop:value})
+$scope.$broadcast('namespace:eventName',{prop:value})
+
+2.Listen and Handle the Event:
+$scope.$on('namespace:eventName',handler);
+
+handler ->
+function handler(event, data){
+
+}
