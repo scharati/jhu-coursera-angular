@@ -1,0 +1,26 @@
+Routing state with controller
+
+angular.module('RoutingApp',[ui.router]);
+
+angular.module('RoutingApp')
+.config(RoutingConfig);
+
+RoutingConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
+function RoutingConfig($stateProvider,$urlRouterProvider){
+	$urlRouterProvider.otherwise('/');
+
+	$stateProvider.state('myview1',{
+		url:'/view1',
+		templateUrl: 'home.html'
+	});
+	
+}
+
+one can specify the controller for html i.e. home.html in the .state configuration itself instead of mentioning it in the home.html
+
+
+	$stateProvider.state('myview1',{
+		url:'/view1',
+		templateUrl: 'home.html',
+		controller: "HomeCtrl as home"
+	});
