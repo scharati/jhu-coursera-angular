@@ -1,0 +1,40 @@
+AngularJS Modules:
+
+Modules are a way of organizing code. They are to make the problem look more approachable by dividing into cohesive units.
+Angular does NOT have a main method for starting the application.
+
+Instead it uses the Module API to define te artifacts for the application viz., component, controller, factory, service etc
+
+Step 1: Declare/ Create a Module:
+
+->Create a module:
+
+angular.module(<unique_name_for_module_across_application>); -> note NO dependencies
+
+->Declare a module [i.e. use an already defined module]
+
+angular.module(<defined_module_name>, [<comma_separated_list_of_dependent_module_names>]);
+
+
+examples:
+
+->create a module without any dependencies:
+
+angular.module("module_no_dep",[]);
+
+->create a module with dependencies
+
+angular.module("module_with_deps",['module1','module2']);
+
+
+Step2 : Declare Module Artifacts
+
+angular.module(<module_name>).controller(<controller_name>, controller_implementation)
+
+Note there is NO second argument to the angular.module method.
+
+angular.module("module1").controller("MyController",MyController);
+
+Step 3: specify the main module in HTML
+
+<ng-app = "MainModule_name">

@@ -1,0 +1,46 @@
+Routing state with Nested views:
+
+Nested views are as the name suggests nested inside a parent view. Nested views establish a concept of parent - child views
+
+Nested states are a mechanism to establish nested views logically.
+
+Parent state template has an "ui-view" in its template for the child state's template to insert its HTML
+
+Child state name is usually declared with syntax "parent.child"
+
+The optionally declared url of the child gets concatenated to the declared url of the parent
+
+The parent's resolve property is inherited by the child and is injectable directly into the child's controller
+
+
+steps:
+
+1. setuo the child state (nested state)
+
+.state('view1.child',{      --> child state of view1
+    url:'/detail/{param}' ---> this gets appended to the parent URL
+    templateUrl : 'viewDetail.html'
+})
+
+1a. the parent's template should have <ui-view> for the child template to get inserted
+
+2. resolve properties are inherited
+
+parent:
+
+.state('view1',{
+    resolve:{
+        mydata : 'someVal'
+    }
+});
+
+child:
+
+.state('view1.child',{
+    contoller: "ChildCtrl as child"
+});
+
+This is possible:
+
+ChildCtrl.$inject = ['myData'];
+function ChildCtrl(myData){};

@@ -1,0 +1,70 @@
+Routing:
+
+Routing is the concept of navigating between different urls.In the earlier Web1.0 paradigm the interaction between client and server went something like this;
+
+client ----------------------/myurl1----> server
+   |<----------------------myurl1 resource-|
+
+client ----------------------/myurl1?id=2----> server
+   |<----------------------myurl1id2 resource-|
+
+notice that for every interaction the server sends the whole page content to the server
+
+
+Web2.0 has a different approach and is less taxing on the user and results in better usability
+
+
+client ----------------------/myurl1----> server
+   |<----------------------myurl1 resource-|
+
+client ----------------------#/myurl1?id=2---|   server
+  |------------------------------------------|
+
+Here the 2nd call does not go to the server but the client itself serves that url.
+
+
+There is another way of Routing which is based on states. States represent the JavaScript object representation of the view to be displayed and work without a url associated with them.
+
+ui.router is a community built routing mechanism for AngularJS and it can provide both Url based routing and state based routing
+
+Steps for using ui-router
+
+1. reference is HTML after reference to Angular.js
+
+2. ui-view is an intial place holder provided by ui-router for inserting different views . This has to be inserted in the SPA html.
+<body>
+    <ui-view> </ui-view> --> content will be loaded in <ui-view>
+</body>
+
+3. declare ui-router as dependency
+
+angular.module('app',['ui-router']);
+
+4. configure routes in .config method
+
+angular.module('app')
+.config(RoutesConfig);
+
+RoutesConfig.$inject = ['$stateProvider','$urlRouterProvider'];
+
+function RoutesConfig($stateProvider,urlRouterProvider){
+    $stateProvider.state{'<stateName',{
+                            url: '/url1' -----> optional
+                            template/templateUrl : <html/html_template_path>
+    }
+
+  }
+
+  $urlRouterProvider
+    .otherwise('/view1'); --> the default url to serve
+
+}
+state method is chainable
+
+ui-sref is the attribute which can refer to the state in html
+
+ <a ui-sref="stateName">  TAB1 </a>
+
+ui-sref-active is the attribute which can refer to the CSS class to be applied when the particular html element is added to the <ui-view>
+
+<a ui-sref="state" ui-sref-active="cssClass_to_apply">  TAB1 </a>
