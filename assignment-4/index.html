@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="MenuApp">
+<head>
+    <title> Assignment 4</title>
+</head>
+<body>
+
+    <h1> Welcome to the restaurant!! </h1>
+
+    <!-- to insert any other views -->
+    <ui-view> </ui-view>
+
+    <!-- libraries -->
+    <script src="lib/angular.js"></script>
+    <script src="lib/angular-ui-router.js"></script>
+
+    <!-- module definitions -->
+    <script src="src/menuapp.module.js"></script>
+    <script src="src/data.module.js"></script>
+    <script src="routes.js"></script>
+
+    <!-- artifacts of the modules -->
+    <script src="src/menudata.service.js"></script>
+    <script src="src/categories.controller.js"></script>
+    <script src="src/item.controller.js"></script>
+
+
+</body>
+</html>

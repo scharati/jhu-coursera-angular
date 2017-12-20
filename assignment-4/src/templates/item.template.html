@@ -1,0 +1,29 @@
+<div ng-controller="ItemController as itemCtrl">
+    <div>
+        <a ui-sref="home">Home</a>
+    </div>
+    <div>
+        <a ui-sref="categories">Menu Categories</a>
+    </div>
+
+    <div>
+        <h2>{{itemCtrl.categoryName}}<h2>
+    </div>
+<ul>
+    <li ng-repeat="item in itemCtrl.items">
+        <div>
+            {{item.name}}
+        </div>
+        <div>
+            {{item.description}}
+        </div>
+        <div>
+            {{item.price_small}}
+        </div>
+        <div>
+            {{item.price_large}}
+        </div>
+    </li>
+</ul>
+</div>
+
