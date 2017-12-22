@@ -1,0 +1,80 @@
+Forms are a collection of input types. In the NON - SPA world forms used to collect user input and send to server on press of "submit".
+<form>
+    <input type="text"> -> to enter single line of text
+    <input type="textarea"> -> to enter multi line of text
+    <input type="checkbox"> -> to select options
+
+    <input type="submit"> -> to submit the input values to the server (NON -SPA)
+</form>
+
+
+steps:
+
+1.create a form in HTML with the name attributes
+
+example:
+<form name='formName'> -> "formName" name for the Form
+    <input type="text" name="name"> --> "name" for the input type
+    <button>Submit </button>
+</form>
+
+2. Bind Input with ng-model
+
+<form name="formName">
+    <input type="text" name="name"
+    ng-model="ctrl.name">
+    <button ng-click="ctrl.go()">
+    Submit
+    </button>
+</form>
+
+It assumes that the element is surrounded in an element with the contrller = ctrl
+or there is a controller as syntax with controller = ctrl
+
+3. Declare HTML 5 validation attributes
+
+<form name="formName" novalidate> --> novalidate -->OOTB validation is off and AngularJS is in control
+    <input type="text" name="name" ng-model="ctrl.name"
+    required --> implies that the field is compulsory**
+    min-length="4"> --> implies that the minimum field length is 4 characters
+    <button ng-click="ctrl.go()">
+        Submit
+    </button>
+</form>
+
+There are corresponding AngularJS attributes like ng-min-length. The advantage with these is that one can use AngularJS expressions in there -> {{angular_expression}}
+
+4. Use AngularJS Form Bound Objects (to give feedback
+
+<input type="text name="name"
+        ng-model="ctrl.name"
+        required
+        min-length="4">
+ <span ng-if="formName.name.$error.required && formName.name.$touched">
+    Name is required
+ </span>
+
+ When AngularJS compiles the HTML there is a FormController created for the Form tag with the name of the controller = formName
+
+ This FormController (formName) is stored on the $scope object
+
+ There are some bound properties created on the Form itself
+ eg. formName.$invalid
+
+ example usage :
+
+ <button ng-disabled="formName.$invalid"
+ ng-click="ctrl.go()">
+    Submit
+ </button>
+
+ 5. Use Angular validation styles
+
+ AngularJS validation uses CSS classes which can be further used for formatting
+
+ .ng-touched.ng-valid{
+    border : 2px green solid;
+ }
+
+
+
