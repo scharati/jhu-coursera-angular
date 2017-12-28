@@ -1,0 +1,36 @@
+Testing AngularJS services and $http
+
+AngularJS provides a service called $httpBackend which simulates the http calls so that we do not have to go over the wire to complete some service request
+
+Steps:
+
+1. beforeEach setup for this problem:
+
+var myService;
+var $httpBackend;
+
+beforeEach(function(){
+	module('MyApp');
+
+	inject(function($injector){
+		myService = $injector.get('MyService');
+		$httpBackend = $injector.get('$httpBackend');
+	});
+});
+
+$httpBackend service is retrieved to simulate the $http calls
+
+2. Test Method:
+
+it('should return some data',function(){
+	// simulate HTTP GET -> stub the http call
+	$httpBackend.whenGET(<http://url>).respond(['val1','val2']);
+
+	myService.getItems.then(function(response){
+		expect(response.data).toEqual(['val1','val2']);
+	});
+
+	$httpBackend.flush(); 
+	-> this is to signal that the async call be made immediately
+
+});

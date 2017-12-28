@@ -1,0 +1,33 @@
+Unit testing Javascript with Jasmine
+
+Unit Testing :
+
+It is independent checking for proper operation of the smallest testable part of an application
+	independent => isolated from the rest of the system [ all dependent systems are mocked out i.e. they have some dummy object which provide the necessary inputs. This is so that we concentrate ton the operation of the unit that we are interested in]
+
+	Mocking => It is a technique employed in Testing where dependency and its behavior is faked.
+
+Jasmine -> JavaScript testing framework
+
+components of Jasmine framework:
+
+src => is where application source code is stored
+
+spec => is where the test specifications are stored
+
+Spec :
+
+describe("<test_suite_name>",function(){
+	
+	beforeEach(function(){ -----> optional , invoked before each test
+
+	});
+
+	it("<description_of_test>",function(){ --> the test
+
+	});
+
+})
+
+
+describe function acts as the container for ALL the tests that we are going to run

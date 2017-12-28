@@ -1,0 +1,85 @@
+Testing Angular controllers:
+
+Angular Controllers can be tested using the ngMock framework
+
+Steps with Jasmine framework:
+
+1. beforeEach setup
+
+describe("<test_suite_name>", function(){
+	
+	beforeEach(module('<module_name_to_test'));
+});
+
+module is the alias for angular.mock.module
+In the above case : "module_name_to_test" contains the controller which we want to test.
+
+
+1A. another way to use the beforeEach setup
+
+describe("<test_suite_name>", function(){
+	module("<module_to_test>");
+	setupMock();
+})
+
+There can be multiple beforeEach calls
+
+2. Settting up the Mock
+
+var myCtrl;
+var mockService;
+var $controller;
+
+beforeEach(inject(function(_$controller_){
+		$controller = _$controller_;
+
+		mockService = {};
+		mockService.aMethod = function(){
+			return fake-value;
+		};
+
+		myCtrl = $controller('MyCtrl',{MyService:mockService});
+
+}));
+
+_$OOTBServiceName_ is a naming mechanism to make it possible to inject $OOTBServiceName into functions and thus make it possible to refer to $OOTBServiceName local variable
+
+3. The test:
+
+it("should update init value on item add", function(){
+	myCtrl.addItem(); --> call the method to be tested
+	expect(myCtrl.value).toBe("fake-value"); --> the value to be verified
+});
+
+4. The files to include:
+<script src="lib/angular.js"> </script> --> core AngularJS
+<script src="lib/angular-mocks.js"> </script> --> ngMock
+<script src="lib/app.js"> </script> --> application code
+
+<!-- spec files -->
+<script src="spec/MyCtrl.spec.js"> </script> --> the code for testing the controllers
+
+
+Alternate way of creating Mock object
+
+1. inject the $provide service
+   create a MockService and define the required methods on it.
+beforeEach(function(){
+	module(function($provide){
+		$provide.service('MockService',function(){
+		 var service = this;
+		 service.aMethod = function(){
+		 	return 'fake-value';
+		 };
+		});
+	});
+	module('MyApp');
+});
+
+2. create the controller by injecting the created MockService by it's name.
+
+beforeEach(inject(function(_$controller_,MockService){
+		$controller = _$controller_;
+		myCntrl = $controller('MyCtrl',{Myservice:MockService});
+
+}));
