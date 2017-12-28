@@ -1,0 +1,32 @@
+Testing AngularJS components:
+
+ngMock module provides $componentController which is helper service to test 
+components
+
+Steps:
+
+1.beforeEach setup
+
+var $componentController;
+
+beforeEach(module('My App'));
+
+beforEach(inject(function(_$componentController_){
+	$componentController = _$componentController_;
+}));
+
+2. The Test method:
+
+it('should update value',function(){
+	var bindings = {
+		prop1: {val: 'some val'};
+	};
+
+	// myComp -> name of the component
+	// {} injections expected by the component
+	// bindings expected
+	var ctrl = $componentController('myComp',{},bindings);
+
+	var updateVal = ctrl.val;
+	expect(updateVal).toEqual('some val');
+});

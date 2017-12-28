@@ -3,25 +3,22 @@
 	.controller('ShoppingListController1',ShoppingListController1)
 	.controller('ShoppingListController2',ShoppingListController2)
 	.factory("ShoppingListFactory", ShoppingListFactory)
-	.directive('listItemDescription', ListItemDescription)
-	.directive('listItem',ListItem);
+	// .directive('listItemDescription', ListItemDescription)
+	// .directive('listItem',ListItem);
+	.directive("shoppingList",ShoppingList);
 
-
-	function ListItem(){
+	function ShoppingList(){
 		var ddo = {
-			templateUrl : 'listitem.html'
+			templateUrl : 'shoppinglist.html',
+			scope : {
+				list:"=myList",
+				title:"@title"
+			}
 		};
 
 		return ddo;
-	};
+	}
 
-	function ListItemDescription(){
-		var ddo = {
-			template : '{{item.quantity}} of {{item.name}}'
-		};
-
-		return ddo;
-	};
 
 	ShoppingListController1.$inject = ['ShoppingListFactory'];
 
@@ -35,13 +32,17 @@
 
 		slvm.items = shoppingList.getItems();
 
+		var origTitle = "Shopping List #1";
+		slvm.title = origTitle + " ( " + slvm.items.length + " items )";
 
 		slvm.addItem = function(){
 			shoppingList.addItem(slvm.itemName, slvm.itemQuantity);
+			slvm.title = origTitle + " ( " + slvm.items.length + " items )";			
 		}
 
 		slvm.removeItem = function(index){
 			shoppingList.removeItem(index);
+			slvm.title = origTitle + " ( " + slvm.items.length + " items )";			
 		};
 
 	}
@@ -58,10 +59,13 @@
 
 		slvm.items = shoppingList.getItems();
 
+		var origTitle = "Shopping List #2";
+		slvm.title = origTitle + " ( " + slvm.items.length + " items )";
 
 		slvm.addItem = function(){
 			try{
-				shoppingList.addItem(slvm.itemName, slvm.itemQuantity);				
+				shoppingList.addItem(slvm.itemName, slvm.itemQuantity);	
+				slvm.title = origTitle + " ( " + slvm.items.length + " items )";			
 			}
 			catch(error){
 				slvm.errorMessage = error.message;
@@ -71,6 +75,7 @@
 
 		slvm.removeItem = function(index){
 			shoppingList.removeItem(index);
+			slvm.title = origTitle + " ( " + slvm.items.length + " items )";
 		};
 
 	}	
@@ -103,7 +108,7 @@
 		};
 
 		service.removeItem = function(index){
-			items.splice(index);
+			items.splice(index,1);
 		};
 	}
 

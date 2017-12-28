@@ -1,0 +1,74 @@
+Testing Angular JS directives and components
+
+Steps:
+1. beforeEach Setup:
+
+var $compile;
+var $rootScope;
+var expectedHtml = "the html";
+
+beforeEach(module("<module_to_test>"));
+
+beforeEach(inject(function(_$rootScope_,
+							_$compile_){
+	$rootScope = _$rootScope_;
+	$compile = _$compile_;
+	
+}));
+
+
+
+2. beforeEach setup for using templateUrl:
+
+If the directive uses "templateUrl" property then AngularJS makes an AJAX 
+request to get the template. We do not want Async calls as part of our test.
+So $templateCache service is used. AngularJS first checks if the template to
+be fetched already exists in the $templateCache, if it exists then the same 
+is used from the cache. So the trick lies in fetching the template.html and 
+placing it beforehand in $templateCache.
+
+setting up beforeEach to accomplish the same:
+
+beforeEach(inject(function($templateCache){
+	var template = null;
+	// to get the template and store it in the $templateCache
+
+	var req = new XMLHttpRequest();
+	req.onload = function(){
+		template = this.responseText;
+	};
+
+	req.open("get","template.html",false); --> false signifies make the sync 
+	// call
+
+	req.send();
+
+	// storing a key - value pair
+	// template.html -> template
+	$templateCache.put("template.html",template);
+}));
+
+3. The test method:
+
+it("should properly insert content",function(){
+	// construct the objects that need to be inserted into the directive
+	var item = {name: "myName"}l
+	$rootScope.item = item
+
+	// the usage html for the directive
+	var html = "<my-directive item="item"> </my-directive>";
+
+	// $compile service returns a function which needs scope to bind the 
+	// data to the place holders in the html
+	var elem = $compile(html)($rootScope);
+
+	// the actual action of binding data to the view happens here
+	// we need to manually kickstart this
+
+	$rootScope.$digest();
+
+	expect(elem.html()).toContain(expectedHtml);
+
+});
+
+
