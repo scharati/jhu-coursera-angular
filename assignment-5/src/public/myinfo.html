@@ -1,0 +1,21 @@
+
+
+<div class="container" ng-controller="myInfoController as $ctrl">
+	<div ng-if="!$ctrl.signupDetail">
+		Not Signed Up Yet. <a ui-sref="public.signup">Sign up Now!</a>
+	</div>
+	<div ng-if="$ctrl.signupDetail">
+	<div> User Details: </div>
+	<div class="container">
+		<div> First Name:{{$ctrl.signupDetail.firstName}}</div>
+		<br>
+		<div> Last Name:{{$ctrl.signupDetail.lastName}}</div>
+		<br>
+		<div> E-Mail:{{$ctrl.signupDetail.email}}</div>
+		<br>
+	</div>
+	<div> Favorite Dish</div>
+	<br>
+	<menu-item menu-item="$ctrl.signupDetail.favItemDetails"> </menu-item>
+	</div>
+</div>

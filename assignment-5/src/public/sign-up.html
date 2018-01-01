@@ -1,0 +1,33 @@
+
+<fieldset ng-controller="signUpController as ctrl">
+	<form  class="signup" name="signUpForm" novalidate>
+		<h2> Sign-Up:</h2>		
+		<input type="text" name="firstName" placeholder="enter your first name" ng-model="ctrl.firstName" required
+		size=100 minlength="4">
+		{{ctrl.firstName}}
+		<span ng-if="signUpForm.firstName.$error.required && signUpForm.firstName.$touched"> first name is required</span>
+		<br>
+		<br>		
+		<input type="text" name="lastName" placeholder="enter your last name" ng-model="ctrl.lastName" size=100 minlength="4" required>
+		{{ctrl.lastName}}
+		<span ng-if="signUpForm.lastName.$error.required && signUpForm.lastName.$touched"> last name is required</span>		
+		<br>
+		<br>
+		<input type="email" name="email" placeholder="enter your email" ng-model="ctrl.email" size=100 required>
+		{{ctrl.email}}
+		<span ng-if="signUpForm.email.$touched && signUpForm.email.$invalid"> email is required and should be of id@domain form</span>			
+		<br>
+		<br>
+		<input type="text" name="favItem" placeholder="enter your favorite item short code" ng-model="ctrl.favItem" size=100 required>
+		{{ctrl.favItem}}
+		<span ng-if="signUpForm.favItem.$error.required && signUpForm.favItem.$touched"> favorite item is required</span>
+		<span ng-if="!ctrl.isValidMenuName"> No such menu number exists</span>		
+		<br>
+		<br>		
+		<button ng-if="signUpForm.$valid" ng-click="ctrl.signup()"> Signup</button>	
+	    <div ng-if="ctrl.completed">
+			Information has been saved.
+	    </div>		
+	</form>
+
+</fieldset>
